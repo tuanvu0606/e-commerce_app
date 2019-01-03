@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ip add:</strong>
+  <%= @user_session.IP_add %>
+</p>
+
+<p>
+  <strong>String:</strong>
+  <%= @user_session.string %>
+</p>
+
+<p>
+  <strong>Timestamp:</strong>
+  <%= @user_session.timestamp %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @user_session.time %>
+</p>
+
+<p>
+  <strong>Cart number:</strong>
+  <%= @user_session.cart_number %>
+</p>
+
+<p>
+  <strong>Integer:</strong>
+  <%= @user_session.integer %>
+</p>
+
+<p>
+  <strong>User account:</strong>
+  <%= @user_session.user_account_id %>
+</p>
+
+<p>
+  <strong>Integer:</strong>
+  <%= @user_session.integer %>
+</p>
+
+<p>
+  <strong>User visit:</strong>
+  <%= @user_session.user_visit %>
+</p>
+
+<p>
+  <strong>User transaction:</strong>
+  <%= @user_session.user_transaction %>
+</p>
+
+<%= link_to 'Edit', edit_user_session_path(@user_session) %> |
+<%= link_to 'Back', user_sessions_path %>

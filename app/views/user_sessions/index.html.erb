@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User Sessions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ip add</th>
+      <th>String</th>
+      <th>Timestamp</th>
+      <th>Time</th>
+      <th>Cart number</th>
+      <th>Integer</th>
+      <th>User account</th>
+      <th>Integer</th>
+      <th>User visit</th>
+      <th>User transaction</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_sessions.each do |user_session| %>
+      <tr>
+        <td><%= user_session.IP_add %></td>
+        <td><%= user_session.string %></td>
+        <td><%= user_session.timestamp %></td>
+        <td><%= user_session.time %></td>
+        <td><%= user_session.cart_number %></td>
+        <td><%= user_session.integer %></td>
+        <td><%= user_session.user_account_id %></td>
+        <td><%= user_session.integer %></td>
+        <td><%= user_session.user_visit %></td>
+        <td><%= user_session.user_transaction %></td>
+        <td><%= link_to 'Show', user_session %></td>
+        <td><%= link_to 'Edit', edit_user_session_path(user_session) %></td>
+        <td><%= link_to 'Destroy', user_session, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User Session', new_user_session_path %>

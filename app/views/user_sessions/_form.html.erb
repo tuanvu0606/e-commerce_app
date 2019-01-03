@@ -1,0 +1,67 @@
+<%= form_with(model: user_session, local: true) do |form| %>
+  <% if user_session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_session.errors.count, "error") %> prohibited this user_session from being saved:</h2>
+
+      <ul>
+      <% user_session.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :IP_add %>
+    <%= form.text_field :IP_add %>
+  </div>
+
+  <div class="field">
+    <%= form.label :string %>
+    <%= form.text_field :string %>
+  </div>
+
+  <div class="field">
+    <%= form.label :timestamp %>
+    <%= form.text_field :timestamp %>
+  </div>
+
+  <div class="field">
+    <%= form.label :time %>
+    <%= form.text_field :time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cart_number %>
+    <%= form.text_field :cart_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :integer %>
+    <%= form.text_field :integer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_account_id %>
+    <%= form.text_field :user_account_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :integer %>
+    <%= form.text_field :integer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_visit %>
+    <%= form.number_field :user_visit %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_transaction %>
+    <%= form.text_field :user_transaction %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
