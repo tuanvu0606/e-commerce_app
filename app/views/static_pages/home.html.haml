@@ -1,4 +1,87 @@
 .row
-  .col-3 col-4
-  .col-6 col-8
-  .col-3 col-4
+  .col-3
+    %ul.list-group
+      %li.list-group-item Cras justo odio
+      %li.list-group-item Dapibus ac facilisis in
+      %li.list-group-item Morbi leo risus
+      %li.list-group-item Porta ac consectetur ac
+      %li.list-group-item Vestibulum at eros
+  .col-6
+    #carouselExampleIndicators.carousel.slide(data-ride="carousel")
+      %ol.carousel-indicators
+        %li.active(data-slide-to="0" data-target="#carouselExampleIndicators")
+        %li(data-slide-to="1" data-target="#carouselExampleIndicators")
+        %li(data-slide-to="2" data-target="#carouselExampleIndicators")
+      .carousel-inner
+        .carousel-item.active
+          %img.d-block.w-100
+            = image_tag 'heic1509a.jpg'
+        .carousel-item
+          %img.d-block.w-100
+            = image_tag 'heic1509a.jpg'
+        .carousel-item
+          %img.d-block.w-100
+            = image_tag 'heic1509a.jpg'
+      %a.carousel-control-prev(data-slide="prev" href="#carouselExampleIndicators" role="button")
+        %span.carousel-control-prev-icon(aria-hidden="true")
+        %span.sr-only Previous
+      %a.carousel-control-next(data-slide="next" href="#carouselExampleIndicators" role="button")
+        %span.carousel-control-next-icon(aria-hidden="true")
+        %span.sr-only Next
+  .col-3
+    .card
+      .card-header
+        Featured
+      .card-body
+        .card
+          %img.card-img-top
+            = image_tag 'drawn-black-cat-reference-514571-4959914_211x211.jpg'
+          .card-body
+            %h5.card-title Special title treatment
+            %p.card-text With supporting text below as a natural lead-in to additional content.
+            %a.btn.btn-primary(href="#") Go somewhere
+
+.card(style = "margin: 20px 0px;")
+  .card-header
+    Featured
+  .card-body
+    .row
+      .card.col-3
+        %img.card-img-top
+          = image_tag 'drawn-black-cat-reference-514571-4959914_211x211.jpg'
+        .card-body
+          %h5.card-title Special title treatment
+          %p.card-text With supporting text below as a natural lead-in to additional content.
+          .input-group.mb-3
+            %select#inputGroupSelect02.custom-select
+              %option(selected="selected") 0
+              %option(value="1") 1
+              %option(value="2") 2
+              %option(value="3") 3
+            .input-group-append
+              %a.btn.btn-primary(href="#") Go somewhere   
+
+      .card.col-3
+        %img.card-img-top
+          = image_tag 'drawn-black-cat-reference-514571-4959914_211x211.jpg'
+        .card-body
+          %h5.card-title Special title treatment
+          %p.card-text With supporting text below as a natural lead-in to additional content.
+          %a.btn.btn-primary(href="#") Go somewhere  
+
+      .card.col-3
+        %img.card-img-top
+          = image_tag 'drawn-black-cat-reference-514571-4959914_211x211.jpg'
+        .card-body
+          %h5.card-title Special title treatment
+          %p.card-text With supporting text below as a natural lead-in to additional content.
+          %a.btn.btn-primary(href="#") Go somewhere                        
+
+      .card.col-3
+        %img.card-img-top
+          = image_tag 'drawn-black-cat-reference-514571-4959914_211x211.jpg'
+        .card-body
+          %h5.card-title Special title treatment
+          %p.card-text With supporting text below as a natural lead-in to additional content.
+          %a.btn.btn-primary(href="#") Go somewhere  
+
