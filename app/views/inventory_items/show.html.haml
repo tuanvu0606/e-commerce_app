@@ -1,0 +1,22 @@
+%p#notice= notice
+%p
+  %strong Inv item category:
+  = @inventory_item.inventory_item_category_id
+%p
+  %strong Model:
+  = @inventory_item.inventory_model_id
+%p
+  %strong Name:
+  = @inventory_item.name
+%p
+  %strong Price:
+  = @inventory_item.price
+%p
+  %strong Description:
+  = @inventory_item.description
+%p
+  %strong Warehoused on:
+  = @inventory_item.warehoused_on
+= link_to 'Edit', edit_inventory_item_path(@inventory_item)
+|
+= link_to 'Back', inventory_items_path
