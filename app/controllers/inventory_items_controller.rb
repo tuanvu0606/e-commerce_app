@@ -1,15 +1,17 @@
 class InventoryItemsController < ApplicationController
   before_action :set_inventory_item, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]  
 
   # GET /inventory_items
   # GET /inventory_items.json
   def index
-    @inventory_items = InventoryItem.all
+    @inventory_items = InventoryItem.all.order("created_at desc")
   end
 
   # GET /inventory_items/1
   # GET /inventory_items/1.json
   def show
+    
   end
 
   # GET /inventory_items/new
@@ -24,6 +26,7 @@ class InventoryItemsController < ApplicationController
   # POST /inventory_items
   # POST /inventory_items.json
   def create
+
     @inventory_item = InventoryItem.new(inventory_item_params)
 
     respond_to do |format|
@@ -69,6 +72,6 @@ class InventoryItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inventory_item_params
-      params.require(:inventory_item).permit(:inventory_item_category_id, :inventory_model_id, :name, :price, :description, :warehoused_on)
+      params.require(:inventory_item).permit(:name, :price, :description, :warehoused_on, :inventory_item_category_id, :inventory_model_id)
     end
 end

@@ -1,6 +1,6 @@
 class InventoryItemCategoriesController < ApplicationController
   before_action :set_inventory_item_category, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show]  
   # GET /inventory_item_categories
   # GET /inventory_item_categories.json
   def index
@@ -10,6 +10,7 @@ class InventoryItemCategoriesController < ApplicationController
   # GET /inventory_item_categories/1
   # GET /inventory_item_categories/1.json
   def show
+    
   end
 
   # GET /inventory_item_categories/new

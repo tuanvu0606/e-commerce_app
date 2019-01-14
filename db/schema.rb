@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_11_101852) do
+ActiveRecord::Schema.define(version: 2019_01_13_162544) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventory_item_categories", force: :cascade do |t|
+    t.string "category_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "inventory_items", force: :cascade do |t|
     t.string "name"
@@ -23,6 +37,34 @@ ActiveRecord::Schema.define(version: 2019_01_11_101852) do
     t.integer "inventory_model_id"
     t.index ["inventory_item_category_id"], name: "index_inventory_items_on_inventory_item_category_id"
     t.index ["inventory_model_id"], name: "index_inventory_items_on_inventory_model_id"
+  end
+
+  create_table "inventory_models", force: :cascade do |t|
+    t.string "inventory_model_name"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_line_items", force: :cascade do |t|
+    t.integer "inventory_item_id"
+    t.integer "order_id"
+    t.integer "order_item_qty", default: 1
+    t.float "total_price"
+    t.float "order_line_item_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inventory_item_id"], name: "index_order_line_items_on_inventory_item_id"
+    t.index ["order_id"], name: "index_order_line_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id"
+    t.float "total_amount"
+    t.integer "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

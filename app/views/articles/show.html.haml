@@ -1,0 +1,40 @@
+- if user_signed_in? && current_user.admin
+  %p#notice= notice
+  %p
+    %strong Name:
+    = @article.name
+  %p
+    %strong Description:
+    = @article.description
+  %p
+    %strong Content:
+    = @article.content
+  = link_to 'Edit', edit_article_path(@article)
+  |
+  = link_to 'Back', articles_path
+  %br
+  = link_to 'New Article', new_article_path
+- else           
+  .container
+    .row
+      %ul.list-group.col-lg-2
+        %li.list-group-item Recent posts
+        %li.list-group-item Dapibus ac facilisis in
+        %li.list-group-item Morbi leo risus
+        %li.list-group-item Porta ac consectetur ac
+        %li.list-group-item Vestibulum at eros
+      .card.text-center.col-lg-10(style ="margin-top:10px;")
+        .card-header
+          Featured
+        .card-body
+          %h5.card-title 
+            =@article.name
+          %p.card-text 
+            =@article.description
+          //%a.btn.btn-primary
+          //  = link_to 'Details', article
+          //= link_to 'Details', @article, :class => "a btn btn-primary"
+        .card-footer.text-muted
+          Updated at:
+          =@article.updated_at
+
