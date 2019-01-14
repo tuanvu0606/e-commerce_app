@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @articles_in_order = Article.all.order("created_at desc")
   end
 
   # GET /articles/new

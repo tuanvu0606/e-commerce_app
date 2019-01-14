@@ -18,6 +18,9 @@
   %p
     %strong Warehoused on:
     = @inventory_item.warehoused_on
+  %p
+    %strong image:
+    = @inventory_item.image  
   = link_to 'Edit', edit_inventory_item_path(@inventory_item)
   |
   = link_to 'Back', inventory_items_path

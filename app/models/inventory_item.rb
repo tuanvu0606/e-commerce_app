@@ -4,11 +4,13 @@ class InventoryItem < ApplicationRecord
   belongs_to :inventory_item_categories, required: false
   belongs_to :inventory_models, required: false
   has_many :order_line_items
+  mount_uploader :image, ImageUploader  # carrierwave support for our image column
+  serialize :image, JSON # If you use SQLite, add this line.  
 
   #mount_uploader :image, ImageUploader
   #serialize :image, JSON # If you use SQLite, add this line
 
-  validates :name, :description, :price, :inventory_model_id, :inventory_item_category_id, presence: true
+  validates :name, :description, :price, :inventory_model_id, :inventory_item_category_id, :image, presence: true
   #validates :description, length: { maximum: 1000, too_long: "%{count} characters is the maximum aloud. "}
   #validates :title, length: { maximum: 140, too_long: "%{count} characters is the maximum aloud. "}
   #validates :price, length: { maximum: 7 }

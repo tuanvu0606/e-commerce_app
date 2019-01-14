@@ -37,7 +37,7 @@
             %input.form-control.mr-sm-2(aria-label="Search" placeholder="Search" type="search")
             %button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search
           %div.p-2.flex-fill.bd-highlight.d-flex.justify-content-end
-            = link_to '', shopping_cart_path, :class => "button btn btn-outline-success my-2 my-sm-0 i fa fa-shopping-cart", :style => "height: 38px; padding-top: 10px; margin-right: 10px"
+            = link_to '', @order, :class => "button btn btn-outline-success my-2 my-sm-0 i fa fa-shopping-cart", :style => "height: 38px; padding-top: 10px; margin-right: 10px"
             = cart_count_over_one
 
       .container

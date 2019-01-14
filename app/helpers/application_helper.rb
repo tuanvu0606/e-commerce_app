@@ -2,9 +2,11 @@ module ApplicationHelper
 
   def cart_count_over_one
   	#binding.pry
-    if @order.order_line_items.count > 0
-      return "<span class='tag is-dark'>#{@order.order_line_items.count}</span>".html_safe
-      #render html: @cart.order_line_items.count
+    if @order != nil
+      if @order.order_line_items.count > 0
+        return "<span class='tag is-dark'>#{@order.order_line_items.count}</span>".html_safe
+        #render html: @cart.order_line_items.count
+      end
     end
   end
 
