@@ -9,7 +9,7 @@
         - @line_items.each do |line_item|
           .row              
             .card.text-center.col-lg-4.col-md-6(style = "margin: 5px 0px;")          
-              = link_to image_tag('drawn-black-cat-reference-514571-4959914_211x211.jpg'), line_item.inventory_item, :class => "img card-img-top"
+              = link_to image_tag(line_item.inventory_item.image_url(:inventory_item)), line_item.inventory_item, :class => "img card-img-top"
               .cart-body
                 %h5.card-title 
                   =line_item.inventory_item.name
@@ -25,8 +25,8 @@
                               
   .columns
     .column
-      = button_to 'Empty Cart', @order, method: :delete, data: { confirm: "Are you sure? " }, class: "btn button btn-primary "
-    %div
+      = button_to 'Empty Cart', @order, method: :delete, data: { confirm: "Are you sure? " }, class: "btn button btn-primary"
+      = render 'form', order: @order
       //= button_to 'Check out', @order.update(order_params: @order), class: "btn button btn-success "  
     .column.total.has-text-right.float-right.mx-auto   
       %h4.title.is-4

@@ -1,7 +1,7 @@
 .row
   .col-lg-3.col-md-12(style = "margin: 10px 0px;")
     %ul.list-group
-      %li.list-group-item Categories
+      %li.list-group-item(style = "background-color: #1E90FF; color: white;") Categories
       - @inventory_item_categories.each do |inventory_item_category| 
         %li.list-group-item
           = link_to inventory_item_category.category_name, inventory_item_category
@@ -18,10 +18,10 @@
             = image_tag 'sport_2.jpg'
         .carousel-item
           %img.d-block.w-100
-            = image_tag 'sport_4.jpg'
+            = image_tag 'nike-men.jpg'
         .carousel-item
           %img.d-block.w-100
-            = image_tag 'heic1509a.jpg'
+            = image_tag 'sport_2.jpg'
       %a.carousel-control-prev(data-slide="prev" href="#carouselExampleIndicators" role="button")
         %span.carousel-control-prev-icon(aria-hidden="true")
         %span.sr-only Previous
@@ -33,12 +33,14 @@
       .card-header
         Best Seller
       .card-body
-        .card
-          %img.card-img-top
-            = image_tag 'drawn-black-cat-reference-514571-4959914_211x211.jpg'
+        .card          
+          = link_to image_tag(@best_seller.image_url(:best_seller)), @best_seller, :class => "img card-img-top"          
           .card-body
-            %h5.card-title Special title treatment
-            %p.card-text With supporting text below as a natural lead-in to additional content.
+            %h5.card-title 
+              =@best_seller.inventory_model_name
+            %p.card-text
+              Quantity:
+              =@best_seller.quantity
             %a.btn.btn-primary(href="#") Go somewhere
 
 .card(style = "margin: 20px 0px;")
@@ -50,7 +52,7 @@
       - @static_pages.each do |inventory_item| 
         .card.text-center.col-lg-4.col-md-6(style = "margin: 5px 0px;")          
           //- binding.pru
-          = link_to image_tag(inventory_item.image_url(:inventory_item)), inventory_item, :class => "img card-img-top"
+          = link_to image_tag(inventory_item.image_url(:inventory_item)), inventory_item, :class => "img card-img-top"          
           .card-body       
             %h5.card-title 
               =inventory_item.name

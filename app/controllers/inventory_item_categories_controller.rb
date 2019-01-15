@@ -70,6 +70,6 @@ class InventoryItemCategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inventory_item_category_params
-      params.require(:inventory_item_category).permit(:category_name)
+      params.require(:inventory_item_category).permit(:category_name, :image)
     end
 end

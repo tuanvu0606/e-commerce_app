@@ -13,4 +13,6 @@ module ApplicationHelper
   def cart_has_items
     return @order.order_line_items.count > 0
   end	
+ 
+
 end

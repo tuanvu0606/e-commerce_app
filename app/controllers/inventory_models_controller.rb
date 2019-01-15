@@ -1,6 +1,6 @@
 class InventoryModelsController < ApplicationController
   before_action :set_inventory_model, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show]  
   # GET /inventory_models
   # GET /inventory_models.json
   def index
@@ -69,6 +69,6 @@ class InventoryModelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inventory_model_params
-      params.require(:inventory_model).permit(:model_name, :quantity)
+      params.require(:inventory_model).permit(:inventory_model_name, :quantity, :image)
     end
 end

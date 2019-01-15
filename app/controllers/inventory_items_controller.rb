@@ -1,6 +1,8 @@
 class InventoryItemsController < ApplicationController
   before_action :set_inventory_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]  
+  #after_action:increment_model_quantity
+  include InventoryModelsHelper
 
   # GET /inventory_items
   # GET /inventory_items.json
@@ -25,19 +27,26 @@ class InventoryItemsController < ApplicationController
 
   # POST /inventory_items
   # POST /inventory_items.json
-  def create
-
+  def create    
     @inventory_item = InventoryItem.new(inventory_item_params)
-
+    
+    
     respond_to do |format|
       if @inventory_item.save
         format.html { redirect_to @inventory_item, notice: 'Inventory item was successfully created.' }
         format.json { render :show, status: :created, location: @inventory_item }
+        @related_model = InventoryModel.find_by(inventory_item_params["inventory_model_id"])
+
+        @related_model.increment(:quantity)
+
+        @related_model.save
       else
         format.html { render :new }
         format.json { render json: @inventory_item.errors, status: :unprocessable_entity }
-      end
+      end  
     end
+    #@inventory_item.inventory_model.increment(:quantity)
+    
   end
 
   # PATCH/PUT /inventory_items/1
@@ -74,4 +83,6 @@ class InventoryItemsController < ApplicationController
     def inventory_item_params
       params.require(:inventory_item).permit(:name, :price, :description, :warehoused_on, :inventory_item_category_id, :inventory_model_id, :image)
     end
+
+
 end

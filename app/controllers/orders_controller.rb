@@ -44,8 +44,13 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
+        if user_signed_in? && current_user.admin
+          format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+          format.json { render :show, status: :ok, location: @order }
+        else
+          @order.lock!
+          format.html { redirect_to checkout_path, notice: 'Checkout'}
+        end
       else
         format.html { render :edit }
         format.json { render json: @order.errors, status: :unprocessable_entity }
@@ -56,8 +61,8 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy    
-    @order.destroy if @order.id == session[:order_id]
-    session[:order_id] = nil    
+    @order.destroy if @order.id == cookies[:order_id]
+    cookies[:order_id] = nil    
     respond_to do |format|
       format.html { redirect_to home_path, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }

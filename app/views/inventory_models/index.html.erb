@@ -14,8 +14,9 @@
   <tbody>
     <% @inventory_models.each do |inventory_model| %>
       <tr>
-        <td><%= inventory_model.model_name %></td>
+        <td><%= inventory_model.inventory_model_name %></td>
         <td><%= inventory_model.quantity %></td>
+        <td><%= inventory_model.image %></td>
         <td><%= link_to 'Show', inventory_model %></td>
         <td><%= link_to 'Edit', edit_inventory_model_path(inventory_model) %></td>
         <td><%= link_to 'Destroy', inventory_model, method: :delete, data: { confirm: 'Are you sure?' } %></td>

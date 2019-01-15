@@ -28,7 +28,7 @@
   .container
     .row
       .col-lg-4
-        = link_to image_tag('drawn-black-cat-reference-514571-4959914_211x211.jpg'), @inventory_item, :class => "img card-img-top"
+        =link_to image_tag(@inventory_item.image_url(:inventory_item)), @inventory_item, :class => "img card-img-top"
       .col-lg-8
         %dl
           %dd
