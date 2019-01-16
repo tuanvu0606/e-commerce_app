@@ -14,18 +14,4 @@ class CombineItemsInOrder < ActiveRecord::Migration[5.2]
     end
   end
 
-  def down
-    #split items with a order_item_qty of 1 or more into multiple items
-    OrderLineItem.where("order_item_qty>1").each do |order_line_item|
-      order_line_item.order_item_qty.times do
-        OrderLineItem.create(
-          order_id: order_line_item.order_id,
-          inventory_item_id: order_line_item.inventory_item_id,
-          order_item_qty: 1
-        )
-      end
-      # remove original line item
-      order_line_item.destroy
-    end
-  end
 end

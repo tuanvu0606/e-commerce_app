@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+
+
+
+  resources :specific_items
   get 'cookies_test/set_cookies'
   get 'cookies_test/show_cookies'
   get 'cookies_test/delete_cookies'

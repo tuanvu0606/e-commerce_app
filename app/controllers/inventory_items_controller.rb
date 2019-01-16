@@ -44,6 +44,7 @@ class InventoryItemsController < ApplicationController
         format.html { render :new }
         format.json { render json: @inventory_item.errors, status: :unprocessable_entity }
       end  
+      #binding.pry
     end
     #@inventory_item.inventory_model.increment(:quantity)
     

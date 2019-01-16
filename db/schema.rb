@@ -10,7 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_14_150651) do
+ActiveRecord::Schema.define(version: 2019_01_16_043024) do
+
+  create_table "ahoy_events", force: :cascade do |t|
+    t.integer "visit_id"
+    t.integer "user_id"
+    t.string "name"
+    t.text "properties"
+    t.datetime "time"
+    t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
+    t.index ["user_id"], name: "index_ahoy_events_on_user_id"
+    t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
+  end
+
+  create_table "ahoy_visits", force: :cascade do |t|
+    t.string "visit_token"
+    t.string "visitor_token"
+    t.integer "user_id"
+    t.string "ip"
+    t.text "user_agent"
+    t.text "referrer"
+    t.string "referring_domain"
+    t.text "landing_page"
+    t.string "browser"
+    t.string "os"
+    t.string "device_type"
+    t.string "country"
+    t.string "region"
+    t.string "city"
+    t.string "utm_source"
+    t.string "utm_medium"
+    t.string "utm_term"
+    t.string "utm_content"
+    t.string "utm_campaign"
+    t.string "app_version"
+    t.string "os_version"
+    t.string "platform"
+    t.datetime "started_at"
+    t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
+    t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
+  end
 
   create_table "articles", force: :cascade do |t|
     t.string "name"
@@ -18,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_01_14_150651) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
   end
 
   create_table "inventory_item_categories", force: :cascade do |t|
@@ -37,6 +77,8 @@ ActiveRecord::Schema.define(version: 2019_01_14_150651) do
     t.integer "inventory_item_category_id"
     t.integer "inventory_model_id"
     t.string "image"
+    t.integer "quantity"
+    t.integer "sold_quantity"
     t.index ["inventory_item_category_id"], name: "index_inventory_items_on_inventory_item_category_id"
     t.index ["inventory_model_id"], name: "index_inventory_items_on_inventory_model_id"
   end
@@ -47,6 +89,7 @@ ActiveRecord::Schema.define(version: 2019_01_14_150651) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.integer "sold_quantity"
   end
 
   create_table "order_line_items", force: :cascade do |t|
@@ -57,6 +100,7 @@ ActiveRecord::Schema.define(version: 2019_01_14_150651) do
     t.float "order_line_item_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "fixed_item_price"
     t.index ["inventory_item_id"], name: "index_order_line_items_on_inventory_item_id"
     t.index ["order_id"], name: "index_order_line_items_on_order_id"
   end
@@ -70,17 +114,25 @@ ActiveRecord::Schema.define(version: 2019_01_14_150651) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "specific_items", force: :cascade do |t|
+    t.integer "inventory_item_id"
+    t.string "serial_number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inventory_item_id"], name: "index_specific_items_on_inventory_item_id"
+    t.index ["serial_number"], name: "index_specific_items_on_serial_number", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.boolean "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.string "email", default: "", null: false
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

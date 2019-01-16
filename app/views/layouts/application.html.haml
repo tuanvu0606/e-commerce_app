@@ -11,7 +11,7 @@
     %header
       .container 
         %nav.navbar.navbar-expand-lg.navbar-light(style = "background-color: white  ;")
-          %a.navbar-brand(href="#") Phone
+          %a.navbar-brand#HomeTopPhone(href="#") Phone
           %button.navbar-toggler(aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" data-target="#navbarText" data-toggle="collapse" type="button")
             %span.navbar-toggler-icon
           #navbarText.collapse.navbar-collapse
@@ -32,10 +32,10 @@
               = link_to "Sign Up", new_user_registration_path
       .container
         %nav.navbar.navbar-expand-lg.navbar-light.d-flex.bd-highlight(style = "background-color: white; padding: 6px;")
-          %a.navbar-brand.p-2.flex-fill.bd-highlight(href="#") App
+          %a.navbar-brand.p-2.flex-fill.bd-highlight#checkid(href="#") App
           %form.form-inline.my-2.my-lg-0.p-2.flex-fill.bd-highlight.d-flex.justify-content-center
-            %input.form-control.mr-sm-2(aria-label="Search" placeholder="Search" type="search")
-            %button.btn.btn-outline-primary.my-2.my-sm-0(type="submit") Search
+            %input.form-control.mr-sm-2#SearchText(aria-label="Search" placeholder="Search" type="search")
+            %button.btn.btn-outline-primary.my-2.my-sm-0#SearchButton(type="submit") Search
           %div.p-2.flex-fill.bd-highlight.d-flex.justify-content-end
             = link_to '', @order, :class => "button btn btn-outline-primary my-2 my-sm-0 i fa fa-shopping-cart", :style => "height: 38px; padding-top: 10px; margin-right: 10px"
             = cart_count_over_one
@@ -49,7 +49,7 @@
     .container
       = yield
 
-    %footer
+    %footer(style = "margin-top: 50px;")
       .container.d-flex.bd-highlight
         .p-2.flex-fill.bd-highlight
           .single_footer.author_information

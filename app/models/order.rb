@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :user, optional: true
   has_many :order_line_items, dependent: :destroy
-
+  accepts_nested_attributes_for :order_line_items
 
   def add_inventory_item(inventory_item)
     current_item = order_line_items.find_by(inventory_item_id: inventory_item.id)

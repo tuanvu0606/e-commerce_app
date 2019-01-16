@@ -12,13 +12,13 @@
                   =line_item.inventory_item.name
                 %h5
                   Price:
-                  =number_to_currency line_item.inventory_item.price
+                  =number_to_currency line_item.fixed_item_price
             .float-right.mx-auto    
               Quantity:
               =line_item.order_item_qty     
             .float-right.mx-auto                  
               Price:
-              =number_to_currency line_item.total_price
+              =number_to_currency line_item.total_fixed_price
 %h4.title.is-4
   %span.f5.has-text-grey Total price:
   = number_to_currency(@order.total_price)                      

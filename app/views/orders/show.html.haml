@@ -18,17 +18,24 @@
                   =number_to_currency line_item.inventory_item.price
             .float-right.mx-auto    
               Quantity:
-              =line_item.order_item_qty     
+              = form_for line_item do |form|
+                = form.text_field :order_item_qty
+                = form.submit
+              //= text_field_tag "search", nil, :placeholder => line_item.order_item_qty, class: "form-control"                     
             .float-right.mx-auto                  
               Price:
               =number_to_currency line_item.total_price
-                              
-  .columns
-    .column
-      = button_to 'Empty Cart', @order, method: :delete, data: { confirm: "Are you sure? " }, class: "btn button btn-primary"
-      = render 'form', order: @order
-      //= button_to 'Check out', @order.update(order_params: @order), class: "btn button btn-success "  
-    .column.total.has-text-right.float-right.mx-auto   
-      %h4.title.is-4
-        %span.f5.has-text-grey Total price:
-        = number_to_currency(@order.total_price)
+              - binding.pry
+            = button_to 'Delete line item', line_item, method: :delete, data: { confirm: "Are you sure? " }, class: "btn button btn-danger"  
+        .row.float-right.mx-auto.h5             
+          Total price:
+          = number_to_currency(@order.total_price)
+  .container        
+    .row
+      .col-4
+        = button_to 'Empty Cart', @order, method: :delete, data: { confirm: "Are you sure? " }, class: "btn button btn-primary"
+      .col-4
+    
+      .col-4
+        = render 'form', order: @order
+        //= button_to 'Check out', @order.update(order_params: @order), class: "btn button btn-success "  

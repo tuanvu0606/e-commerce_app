@@ -25,11 +25,14 @@
       .card.text-center.col-lg-10(style ="margin-top:10px;")
         .card-header
           Featured
-        .card-body
+        = link_to image_tag(@article.image_url(:articles)), @article, :class => "img card-img-top"          
+        .card-body          
           %h5.card-title 
             =@article.name
           %p.card-text 
             =@article.description
+          %p.card-text 
+            =@article.content  
           //%a.btn.btn-primary
           //  = link_to 'Details', article
           //= link_to 'Details', @article, :class => "a btn btn-primary"

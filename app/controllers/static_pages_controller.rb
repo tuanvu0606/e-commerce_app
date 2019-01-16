@@ -2,8 +2,9 @@ class StaticPagesController < ApplicationController
   def home
   	@static_pages  = InventoryItem.paginate(page: params[:page], :per_page => 9)
   	@inventory_item_categories = InventoryItemCategory.all
-    #@order_line_item = @order.order_line_items.new
-    @best_seller = InventoryModel.find_by(quantity: InventoryModel.maximum(:quantity))
+    #@inventory_models = InventoryModels.all
+    @order_line_item = @order.order_line_items.new
+    @best_seller = InventoryItem.find_by(sold_quantity: InventoryItem.maximum(:sold_quantity))
     #binding.pry
   end
 

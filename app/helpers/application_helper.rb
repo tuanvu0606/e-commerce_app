@@ -4,7 +4,8 @@ module ApplicationHelper
   	#binding.pry
     if @order != nil
       if @order.order_line_items.count > 0
-        return "<span class='tag is-dark'>#{@order.order_line_items.count}</span>".html_safe
+        #binding.pry
+        return "<span class='tag is-dark'>#{@order.order_line_items.sum(:order_item_qty)}</span>".html_safe
         #render html: @cart.order_line_items.count
       end
     end

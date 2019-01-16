@@ -42,13 +42,23 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+
     respond_to do |format|
       if @order.update(order_params)
         if user_signed_in? && current_user.admin
           format.html { redirect_to @order, notice: 'Order was successfully updated.' }
           format.json { render :show, status: :ok, location: @order }
         else
-          @order.lock!
+          @order.order_line_items.each do |f|
+            
+            f.fixed_item_price = f.inventory_item.price
+            f.save
+            @related_item = InventoryItem.find(f.inventory_item_id)
+            @related_item.sold_quantity = @related_item.sold_quantity.to_i + f.order_item_qty.to_i
+            @related_item.save
+            binding.pry
+          end
+          
           format.html { redirect_to checkout_path, notice: 'Checkout'}
         end
       else
@@ -60,9 +70,21 @@ class OrdersController < ApplicationController
 
   # DELETE /orders/1
   # DELETE /orders/1.json
-  def destroy    
-    @order.destroy if @order.id == cookies[:order_id]
-    cookies[:order_id] = nil    
+  def destroy
+    #binding.pry
+    if @order.id == cookies[:order_id].to_i
+      
+      @order.order_line_items.each do |f|
+        #binding.pry
+        @inventory_item = f.inventory_item
+        @inventory_item.quantity = @inventory_item.quantity + f.order_item_qty
+        @inventory_item.save
+      end  
+      
+      @order.destroy 
+      cookies[:order_id] = nil
+
+    end     
     respond_to do |format|
       format.html { redirect_to home_path, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
@@ -77,7 +99,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:user_id, :total_amount, :state)
+      params.require(:order).permit(:user_id, :total_amount, :state,order_line_items_attributes: [:order_item_qty])
     end
 
     def invalid_cart
