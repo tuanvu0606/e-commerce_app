@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     def record_user_cookies
       if user_signed_in?        
         cookies[:visited] = cookies[:visited] + "User:" + current_user.id.to_s + ";" + request.path + ";" + Time.now.in_time_zone("Hanoi").strftime("%m/%d/%y %I:%M %p") + ";"        
-        binding.pry
+        #binding.pry
       end
     end
 end
