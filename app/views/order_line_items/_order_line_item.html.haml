@@ -1,0 +1,19 @@
+.row              
+  .card.text-center.col-lg-4.col-md-6(style = "margin: 5px 0px;")         
+    = link_to order_line_item.inventory_item, order_line_item.inventory_item, :class => "img card-img-top"
+    .cart-body
+      %h5.card-title 
+        =order_line_item.inventory_item.name
+      %h5
+        Price:
+        =number_to_currency order_line_item.inventory_item.price
+  .float-right.mx-auto    
+    Quantity:
+    = form_for order_line_item do |form|
+      = form.text_field :order_item_qty
+      = form.submit
+    //= text_field_tag "search", nil, :placeholder => order_line_item.order_item_qty, class: "form-control"                     
+  .float-right.mx-auto                  
+    Price:
+    =number_to_currency order_line_item.total_price
+  = button_to 'Delete line item', order_line_item, method: :delete, data: { confirm: "Are you sure? " }, class: "btn button btn-danger"  

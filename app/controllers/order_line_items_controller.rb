@@ -45,7 +45,8 @@ class OrderLineItemsController < ApplicationController
       #@order_line_item = OrderLineItem.new(order_line_item_params)
       respond_to do |format|
         if @order_line_item.save
-          format.html { redirect_to @order_line_item.order, notice: 'Order line item was successfully created.' }
+          format.html { redirect_to home_path, notice: 'Order line item was successfully created.' }
+          format.js
           format.json { render :show, status: :created, location: @order_line_item }
         else
           format.html { render :new }

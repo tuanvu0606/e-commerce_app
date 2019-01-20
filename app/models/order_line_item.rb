@@ -16,7 +16,6 @@ private
 
   def save_total_price
     self.total_price = inventory_item.price.to_f * order_item_qty.to_f
-    binding.pry
   end
 
 end

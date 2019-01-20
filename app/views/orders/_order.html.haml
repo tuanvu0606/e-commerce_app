@@ -1,0 +1,20 @@
+.keep-shopping.pv1.mt4.has-text-right
+  = link_to 'Keep Shopping', home_path, class: 'button is-warning'
+%hr/
+%section.section
+  .card(style = "margin: 20px 0px;")
+    .card-header  
+      .card-body
+        = render(order.order_line_items)            
+        .row.float-right.mx-auto.h5             
+          Total price:
+          = number_to_currency(order.total_price)
+  .container        
+    .row
+      .col-4
+        = button_to 'Empty Cart', order, method: :delete, data: { confirm: "Are you sure? " }, class: "btn button btn-primary"
+      .col-4
+    
+      .col-4
+        = render 'form', order: order
+        //= button_to 'Check out', @order.update(order_params: @order), class: "btn button btn-success "  

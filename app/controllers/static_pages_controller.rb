@@ -1,5 +1,11 @@
 class StaticPagesController < ApplicationController
-  def home
+  def home    
+    respond_to do |format|
+      format.html 
+      format.js
+      format.json 
+    end
+
   	@static_pages  = InventoryItem.paginate(page: params[:page], :per_page => 9)
   	@inventory_item_categories = InventoryItemCategory.all
     #@inventory_models = InventoryModels.all

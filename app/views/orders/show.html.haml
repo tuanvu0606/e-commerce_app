@@ -25,7 +25,6 @@
             .float-right.mx-auto                  
               Price:
               =number_to_currency line_item.total_price
-              - binding.pry
             = button_to 'Delete line item', line_item, method: :delete, data: { confirm: "Are you sure? " }, class: "btn button btn-danger"  
         .row.float-right.mx-auto.h5             
           Total price:
