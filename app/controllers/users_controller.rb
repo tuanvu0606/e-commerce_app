@@ -1,11 +1,20 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show]  
+  def index
+    @grid = UsersGrid.new(grid_params) do |scope|
+    scope.page(params[:page])
+    end
+  end
+
+  protected
+
+  def grid_params
+    params.fetch(:users_grid, {}).permit!
+  end
+  
   # GET /users
   # GET /users.json
-  def index
-    @users = User.all
-  end
 
   # GET /users/1
   # GET /users/1.json

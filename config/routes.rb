@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-
-
-
+scope :admin do
+  resources :specific_items
+end
+  
+  resources :skills
   resources :specific_items
   get 'cookies_test/set_cookies'
   get 'cookies_test/show_cookies'
